@@ -4,7 +4,7 @@ import './App.css';
 import SmurfForm from './components/SmurfForm';
 import Smurfs from './components/Smurfs';
 import axios from 'axios';
-import { Route } from 'react-router-dom';
+import { Route, NavLink } from 'react-router-dom';
 //import EditForm from './components/EditForm';
 class App extends Component {
   constructor(props) {
@@ -62,9 +62,38 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <SmurfForm add={this.add}/>
-        <Smurfs delete={this.delete} smurfs={this.state.smurfs} />
+    <div className="App">
+      <ul className="navbar">
+        <li>
+          <NavLink exact to="/" activeClassName="activeNavButton">
+          View the Smurfs
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/smurf-form" activeClassName="activeNavButton">
+          Add a new Smurf
+          </NavLink>
+        </li>
+      </ul>
+      <Route exact
+          path="/smurf-form"
+          render= {props => (
+            <SmurfForm
+              {...props}
+              add={this.add}
+            />
+          )}
+        />
+        <Route exact
+          path="/"
+          render= {props => (
+            <Smurfs
+              {...props}
+              deletes={this.delete}
+              smurfs={this.state.smurfs}
+            />
+          )}
+        />
       </div>
     );
     

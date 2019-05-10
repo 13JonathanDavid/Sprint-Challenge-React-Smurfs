@@ -89,7 +89,7 @@ class App extends Component {
           render= {props => (
             <Smurfs
               {...props}
-              deletes={this.delete}
+              delete={this.delete}
               smurfs={this.state.smurfs}
             />
           )}

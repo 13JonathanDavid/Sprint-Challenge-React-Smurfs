@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import Smurf from './Smurf';
 
 class Smurfs extends Component {
+  deleteSmurf(e,id){
+    e.preventDefault();
+    this.props.delete(e,id);
+    }
   render() {
     return (
       <div className="Smurfs">
@@ -18,7 +22,7 @@ class Smurfs extends Component {
                 height={smurf.height}
                 key={smurf.id}
               />
-              <span>X</span></div>
+              <button onClick={(e)=>this.deleteSmurf(e,smurf.id)}>X</button></div>
             );
           })}
         </ul>
